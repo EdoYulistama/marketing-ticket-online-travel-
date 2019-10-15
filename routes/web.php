@@ -29,6 +29,7 @@ Route::prefix('marketing')->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/', 'Marketing\UsersController@users')->name('users');
+        Route::get('/all', 'Marketing\UsersController@user');
     });
     
     Route::prefix('transaction')->group(function () {
