@@ -79,7 +79,8 @@
           <h3 class="font-size-24">Sign In</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
-          <form method="post" action="login-v2.html">
+          <form method="post" action="/auth/signin">
+            @csrf()
             <div class="form-group">
               <label class="sr-only" for="inputEmail">Email</label>
               <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
@@ -90,10 +91,10 @@
                 placeholder="Password">
             </div>
             <div class="form-group clearfix">
-              <div class="checkbox-custom checkbox-inline checkbox-primary float-left">
+              {{-- <div class="checkbox-custom checkbox-inline checkbox-primary float-left">
                 <input type="checkbox" id="rememberMe" name="rememberMe">
                 <label for="rememberMe">Remember me</label>
-              </div>
+              </div> --}}
               <a class="float-right" href="{{ url('/auth/reset/forgot') }}">Forgot password?</a>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign in</button>

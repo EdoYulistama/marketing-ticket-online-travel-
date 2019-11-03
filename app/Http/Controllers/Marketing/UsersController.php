@@ -14,9 +14,11 @@ class UsersController extends Controller
     }
     public function users()
     {
+        $data = $this->user->summaryusers();
         return view('marketing.users.users', [
             'sidemenuActive' => 'users',
             'sidemenuSubActive' => '',
+            'data' => $data
 
         ]);
     }
@@ -24,5 +26,20 @@ class UsersController extends Controller
     public function user()
     {
         return $this->user->users();
+    }
+
+    public function summaryusers()
+    {
+        return $this->user->summaryusers();
+    }
+
+    public function usersyearly()
+    {
+        return $this->user->usersyearly();
+    }
+
+    public function usersday()
+    {
+        return $this->user->usersweekly();
     }
 }

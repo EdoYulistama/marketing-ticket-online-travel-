@@ -6,9 +6,9 @@ Route::get('/', function () {
 
 Route::prefix('auth')->group(function () {
     Route::get('/signup', 'Auth\StaffAuthController@signup');
-    // Route::post('/signup', 'Auth\StaffAuthController@v_signup');
+    Route::post('/signup', 'Auth\StaffAuthController@v_signup');
     Route::get('/signin', 'Auth\StaffAuthController@signin');
-    // Route::post('/signin', 'Auth\StaffAuthController@signin');
+    Route::post('/signin', 'Auth\StaffAuthController@v_signin');
     // Route::get('/signout', 'Auth\StaffAuthController@signout');
     // Route::get('/locked', 'Auth\StaffAuthController@locked');
     // Route::post('/unlock', 'Auth\StaffAuthController@unlock');
@@ -30,6 +30,9 @@ Route::prefix('marketing')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/', 'Marketing\UsersController@users')->name('users');
         Route::get('/all', 'Marketing\UsersController@user');
+        Route::get('/summaryusers', 'Marketing\UsersController@summaryusers');
+        Route::get('/usersyearly', 'Marketing\UsersController@usersyearly');
+        Route::get('/usersday', 'Marketing\UsersController@usersday');
     });
     
     Route::prefix('transaction')->group(function () {

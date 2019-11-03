@@ -4,12 +4,15 @@
 <link rel="apple-touch-icon" href="{{asset('assets/images/apple-touch-icon.png')}}">
 <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-<!--start plugin-->
-    <link rel="stylesheet" href="../../../global/vendor/chartist/chartist.css">
+<!--start plugin chart-->
+    {{-- <link rel="stylesheet" href="../../../global/vendor/chartist/chartist.css"> --}}
     <link rel="stylesheet" href="../../../global/vendor/aspieprogress/asPieProgress.css">
     <link rel="stylesheet" href="../../../global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
     <link rel="stylesheet" href="../../assets/examples/css/dashboard/ecommerce.css">
-<!--end plugin-->
+    <link rel="stylesheet" href="../../../global/vendor/morris/morris.css">
+<!--end plugin chart-->
+
+
 
 <!--start font-->
     <link rel="stylesheet" href="../../../global/fonts/font-awesome/font-awesome.css">
@@ -22,21 +25,127 @@
 <script src="{{asset('global/vendor/aspieprogress/jquery-asPieProgress.js')}}"></script>
 <script src="{{asset('global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js')}}"></script>
 
-<!--start plugin-->
-    <script src="../../../global/vendor/chartist/chartist.min.js"></script>
+<!--start plugin chart-->
+    {{-- <script src="../../../global/vendor/chartist/chartist.min.js"></script> --}}
     <script src="../../../global/vendor/aspieprogress/jquery-asPieProgress.js"></script>
     <script src="../../../global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script>
-<!--end plugin-->
+    <script src="../../../global/vendor/raphael/raphael.min.js"></script>
+    <script src="../../../global/vendor/morris/morris.min.js"></script>
+<!--end plugin chart-->
+
 @endsection
 
 @section('page-js-priority')
 <script src="{{asset('global/js/Plugin/aspieprogress.js')}}"></script>
 <script src="{{asset('assets/examples/js/dashboard/ecommerce.js')}}"></script>
 
-<!--start page-->
+<!--start page chart-->
     <script src="../../../global/js/Plugin/aspieprogress.js"></script>
-    <script src="../../assets/examples/js/dashboard/ecommerce.js"></script>
-<!--end page-->
+    {{-- <script src="../../assets/examples/js/dashboard/ecommerce.js"></script> --}}
+    <script src="../../assets/examples/js/charts/morris.js"></script>
+<!--end page chart-->
+
+
+
+<script>
+// Example Morris Area
+  // -------------------
+  let arrData=[
+                // {
+                //   suspend: {{$data['suspend']}}, 
+                //   nonactive: {{$data['nonactive']}}, 
+                //   active: {{$data['active']}}, 
+                //   all: {{$data['all']}},
+                //   y: "2019"
+                
+                // },
+                {
+                  y: '2002 Feb',
+                  all: 2,
+                  active: 5,
+                  nonactive: 4,
+                  suspend: 1
+                
+                },
+                {
+                  y: '2003 Mar',
+                  all: 4,
+                  active: 7,
+                  nonactive: 1,
+                  suspend: 2
+                
+                },
+                {
+                  y: '2004 Apr',
+                  all: 1,
+                  active: 2,
+                  nonactive: 4,
+                  suspend: 5
+                
+                },
+                {
+                  y: '2005 Apr',
+                  all: 1,
+                  active: 19,
+                  nonactive: 7,
+                  suspend: 5
+                
+                },
+                {
+                  y: '2006 Apr',
+                  all: 1,
+                  active: 11,
+                  nonactive: 4,
+                  suspend: 3
+                
+                },
+                {
+                  y: '2007 Apr',
+                  all: 1,
+                  active: 12,
+                  nonactive: 10,
+                  suspend: 1
+                },
+                {
+                  y: '2008 Mei',
+                  all: 5,
+                  active: 17,
+                  nonactive: 0,
+                  suspend: 1
+                }
+                
+              ];
+  let morrisArea = Morris.Area({
+   
+      element: 'exampleMorrisArea',
+      data: arrData,
+      xkey: 'y',
+      ykeys: ['all', 'active','nonactive', 'suspend'],
+      labels: ['All', 'Active', 'Nonactive', 'Suspend'],
+      behaveLikeLine: true,
+      ymax: 20,
+      resize: true,
+      pointSize: 5,
+      smooth: true,
+      gridTextColor: '#474e54',
+      gridLineColor: '#FF007F',
+      goalLineColors: '#e3e6ea',
+      gridTextFamily: Config.get('fontFamily'),
+      gridTextWeight: '20',
+      numLines: 5,
+      gridtextSize: 20,
+      lineWidth: 4,
+      fillOpacity: 0.1,
+      lineColors: [
+                    Config.colors("primary", 600), 
+                    Config.colors("green", 600),
+                    Config.colors("yellow", 600),
+                    Config.colors("red", 600)
+                  ]
+    });
+  
+</script>
+
 @endsection
 
 @section('content')
@@ -51,9 +160,7 @@
                     </button>
                     <span class="ml-15 font-weight-400">USER REGISTER</span>
                     <div class="content-text text-center mb-0">
-                        <i class="text-danger icon wb-triangle-up font-size-20">
-                    </i>
-                        <span class="font-size-40 font-weight-100">399</span>
+                        <span class="font-size-40 font-weight-100">{{$data['all']}}</span>
                         <p class="blue-grey-400 font-weight-100 m-0">+45% From previous month</p>
                     </div>
                     </div>
@@ -67,9 +174,7 @@
                     </button>
                     <span class="ml-15 font-weight-400">USER ACTIVE</span>
                     <div class="content-text text-center mb-0">
-                        <i class="text-success icon wb-triangle-down font-size-20">
-                    </i>
-                        <span class="font-size-40 font-weight-100">$18,628</span>
+                    <span class="font-size-40 font-weight-100">{{$data['active']}}</span>
                         <p class="blue-grey-400 font-weight-100 m-0">+45% From previous month</p>
                     </div>
                     </div>
@@ -83,9 +188,7 @@
                     </button>
                     <span class="ml-15 font-weight-400">USER NONACTIVE</span>
                     <div class="content-text text-center mb-0">
-                        <i class="text-danger icon wb-triangle-up font-size-20">
-                    </i>
-                        <span class="font-size-40 font-weight-100">23,456</span>
+                        <span class="font-size-40 font-weight-100">{{$data['nonactive']}}</span>
                         <p class="blue-grey-400 font-weight-100 m-0">+25% From previous month</p>
                     </div>
                     </div>
@@ -99,9 +202,7 @@
                     </button>
                     <span class="ml-15 font-weight-400">USER SUSPEND</span>
                     <div class="content-text text-center mb-0">
-                        <i class="text-danger icon wb-triangle-up font-size-20">
-                    </i>
-                        <span class="font-size-40 font-weight-100">4,367</span>
+                        <span class="font-size-40 font-weight-100">{{$data['suspend']}}</span>
                         <p class="blue-grey-400 font-weight-100 m-0">+25% From previous month</p>
                     </div>
                     </div>
@@ -129,9 +230,9 @@
                     </ul>
                   </div>
                   <div class="widget-content tab-content bg-white p-20">
-                    <div class="ct-chart tab-pane active" id="scoreLineToDay"></div>
-                    <div class="ct-chart tab-pane" id="scoreLineToWeek"></div>
-                    <div class="ct-chart tab-pane" id="scoreLineToMonth"></div>
+                      <!-- Example Area -->
+                        <div id="exampleMorrisArea"></div> 
+                      <!-- End Example Area -->
                   </div>
                 </div>
               </div>

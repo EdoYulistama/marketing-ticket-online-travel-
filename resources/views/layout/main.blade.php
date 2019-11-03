@@ -53,7 +53,7 @@
       Breakpoints();
     </script>
   </head>
-  <body class="animsition ecommerce_dashboard">
+  <body class="animsition ecommerce_dashboard" onload="myFunction()" style="margin:0;">
     @include('layout.nav')
     @include('layout.sidebar')
 

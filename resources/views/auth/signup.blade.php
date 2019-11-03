@@ -74,10 +74,19 @@
           <h3 class="font-size-24">Sign Up</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
-          <form method="post" role="form">
+          @if(session('alert'))
+          <div class="alert dark {{ session('css') }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> {{session('alert')}}
+          </div>
+          @endif
+
+          <form method="post" role="form" action="/auth/signup">
+            @csrf()
             <div class="form-group">
               <label class="sr-only" for="inputName">Full Name</label>
-              <input type="text" class="form-control" id="inputName" name="name" placeholder="Name">
+              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Name">
             </div>
             <div class="form-group">
               <label class="sr-only" for="inputEmail">Email</label>
@@ -89,6 +98,22 @@
                 placeholder="Password">
             </div>
             <div class="form-group">
+              <label class="sr-only" for="inputPhone_Number">Phone Number</label>
+              <input type="text" class="form-control" id="inputPhone_Number" name="phone_number" placeholder="Phone Number">
+            </div>
+            <div class="form-group" data-plugin="formMaterial">
+              {{-- <label class="col-xl-12 col-md-3 form-control">Role</label> --}}
+              <!-- <div class="col-xl-12 col-md-9"> -->
+                <select class="form-control" id="role" name="role" title="Pilih Role" required="">
+                  <option value="">=== PILIH ROLE ===</option>
+                  <option value="support">SUPPORT</option>
+                  <option value="marketing">MARKETING</option>
+                  <option value="accounting">ACCOUNTING</option>
+                  <option value="admin">ADMIN</option>
+                </select>
+              <!-- </div> -->
+            </div>
+            {{-- <div class="form-group">
               <label class="sr-only" for="inputPasswordCheck">Retype Password</label>
               <input type="password" class="form-control" id="inputPasswordCheck" name="passwordCheck"
                 placeholder="Confirm Password">
@@ -99,7 +124,7 @@
                 <label for="inputCheckbox"></label>
               </div>
               <p class="ml-40">By clicking Sign Up, you agree to our <a href="#">Terms</a>.</p>
-            </div>
+            </div> --}}
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
           </form>
 
